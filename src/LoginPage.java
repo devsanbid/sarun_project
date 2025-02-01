@@ -31,7 +31,7 @@ public class LoginPage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        javax.swing.JTextField username_input = new javax.swing.JTextField();
+        username_input = new javax.swing.JTextField();
         password_input = new javax.swing.JPasswordField();
         forgotPasswordButton = new javax.swing.JButton();
         login_btn = new javax.swing.JButton();
@@ -179,6 +179,9 @@ public class LoginPage extends javax.swing.JFrame {
 		String username = username_input.getText().trim();
 		String password = new String(password_input.getPassword());
 
+		System.out.println(username);
+		System.out.println(password);
+
 		// Validation
 		if (username.isEmpty() || password.isEmpty()) {
 			JOptionPane.showMessageDialog(this,
@@ -195,6 +198,8 @@ public class LoginPage extends javax.swing.JFrame {
 					"Sucessfully Login!!",
 					"Success",
 					JOptionPane.INFORMATION_MESSAGE);
+			new MenuPage().setVisible(true);
+			this.dispose();
 		}else {
 			JOptionPane.showMessageDialog(this,
 					"failed Login!!",
@@ -255,5 +260,6 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JButton login_btn;
     private javax.swing.JPasswordField password_input;
     private javax.swing.JButton register_btn;
+    private javax.swing.JTextField username_input;
     // End of variables declaration//GEN-END:variables
 }

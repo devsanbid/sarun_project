@@ -1,3 +1,7 @@
+
+import Database.AuthenticationController;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -32,8 +36,8 @@ public class ProfilePage extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        newSecurityQuestionField = new javax.swing.JTextField();
-        updateButton = new javax.swing.JButton();
+        question_input = new javax.swing.JTextField();
+        update_btn = new javax.swing.JButton();
         menuBtn = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -71,18 +75,23 @@ public class ProfilePage extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Update Security Question");
 
-        newSecurityQuestionField.addActionListener(new java.awt.event.ActionListener() {
+        question_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newSecurityQuestionFieldActionPerformed(evt);
+                question_inputActionPerformed(evt);
             }
         });
 
-        updateButton.setBackground(new java.awt.Color(0, 204, 0));
-        updateButton.setForeground(new java.awt.Color(255, 255, 255));
-        updateButton.setText("Update");
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
+        update_btn.setBackground(new java.awt.Color(0, 204, 0));
+        update_btn.setForeground(new java.awt.Color(255, 255, 255));
+        update_btn.setText("Update");
+        update_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                update_btnMouseClicked(evt);
+            }
+        });
+        update_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
+                update_btnActionPerformed(evt);
             }
         });
 
@@ -92,7 +101,7 @@ public class ProfilePage extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(newSecurityQuestionField, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(question_input, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +112,7 @@ public class ProfilePage extends javax.swing.JFrame {
                             .addComponent(jLabel3)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(updateButton)))
+                        .addComponent(update_btn)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -114,10 +123,10 @@ public class ProfilePage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(newSecurityQuestionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(question_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(updateButton)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(update_btn)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         menuBtn.setBackground(new java.awt.Color(0, 0, 0));
@@ -161,7 +170,7 @@ public class ProfilePage extends javax.swing.JFrame {
                         .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(121, 121, 121)
                 .addComponent(deleteAccoutBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -172,13 +181,13 @@ public class ProfilePage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-        private void newSecurityQuestionFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newSecurityQuestionFieldActionPerformed
+        private void question_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_question_inputActionPerformed
                 // TODO add your handling code here:
-        }//GEN-LAST:event_newSecurityQuestionFieldActionPerformed
+        }//GEN-LAST:event_question_inputActionPerformed
 
-        private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        private void update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_btnActionPerformed
                 // TODO add your handling code here:
-        }//GEN-LAST:event_updateButtonActionPerformed
+        }//GEN-LAST:event_update_btnActionPerformed
 
         private void menuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBtnActionPerformed
                 java.awt.EventQueue.invokeLater(new Runnable() {
@@ -188,6 +197,36 @@ public class ProfilePage extends javax.swing.JFrame {
         });
 		this.dispose(); 
         }//GEN-LAST:event_menuBtnActionPerformed
+
+    private void update_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_btnMouseClicked
+        // TODO add your handling code here:
+		String question_text = question_input.getText().trim();
+
+		if(question_text.isEmpty()){
+			JOptionPane.showMessageDialog(this,
+					"empty field",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		boolean success = AuthenticationController.updateQuestion(question_text);
+
+		if(success){
+			JOptionPane.showMessageDialog(this,
+					"sucessfully changed!!",
+					"Success",
+					JOptionPane.INFORMATION_MESSAGE);
+
+		}else {
+			JOptionPane.showMessageDialog(this,
+					"failed to changed!!",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+
+		
+    }//GEN-LAST:event_update_btnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -233,7 +272,7 @@ public class ProfilePage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton menuBtn;
-    private javax.swing.JTextField newSecurityQuestionField;
-    private javax.swing.JButton updateButton;
+    private javax.swing.JTextField question_input;
+    private javax.swing.JButton update_btn;
     // End of variables declaration//GEN-END:variables
 }
