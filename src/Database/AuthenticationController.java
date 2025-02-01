@@ -85,5 +85,20 @@ public class AuthenticationController {
 			return false;
 		}
 	}
+
+	public static boolean DeleteAccount() {
+		try (Connection conn = DatabaseConnection.getConnection()) {
+			String query = "DELETE from users where id = ?";
+			PreparedStatement pstmt = conn.prepareStatement(query);
+
+			pstmt.setInt(1, getUserId());
+
+			int rowsAffected = pstmt.executeUpdate();
+			return rowsAffected > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 }

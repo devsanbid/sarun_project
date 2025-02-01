@@ -32,7 +32,7 @@ public class ProfilePage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        deleteAccoutBtn = new javax.swing.JButton();
+        delete_btn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -62,9 +62,14 @@ public class ProfilePage extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 204, 51));
         jLabel1.setText("Profile");
 
-        deleteAccoutBtn.setBackground(new java.awt.Color(0, 204, 51));
-        deleteAccoutBtn.setForeground(new java.awt.Color(255, 255, 255));
-        deleteAccoutBtn.setText("Delete Account");
+        delete_btn.setBackground(new java.awt.Color(0, 204, 51));
+        delete_btn.setForeground(new java.awt.Color(255, 255, 255));
+        delete_btn.setText("Delete Account");
+        delete_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                delete_btnMouseClicked(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -113,7 +118,7 @@ public class ProfilePage extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(update_btn)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +131,7 @@ public class ProfilePage extends javax.swing.JFrame {
                 .addComponent(question_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(update_btn)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         menuBtn.setBackground(new java.awt.Color(0, 0, 0));
@@ -144,20 +149,18 @@ public class ProfilePage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(menuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(90, 90, 90)
-                                .addComponent(deleteAccoutBtn)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(menuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(delete_btn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,12 +173,12 @@ public class ProfilePage extends javax.swing.JFrame {
                         .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(121, 121, 121)
-                .addComponent(deleteAccoutBtn)
+                .addGap(140, 140, 140)
+                .addComponent(delete_btn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 0, 300, 250));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -40, 390, 540));
 
         pack();
         setLocationRelativeTo(null);
@@ -228,6 +231,39 @@ public class ProfilePage extends javax.swing.JFrame {
 		
     }//GEN-LAST:event_update_btnMouseClicked
 
+    private void delete_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_btnMouseClicked
+        // TODO add your handling code here:
+		int choice = JOptionPane.showConfirmDialog(
+				null, // or your frame component as parent
+				"Are you sure you want to delete your account? This action cannot be undone.",
+				"Confirm Account Deletion",
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.WARNING_MESSAGE
+		);
+
+		if (choice == JOptionPane.YES_OPTION) {
+			// Call your delete account method
+			boolean success = AuthenticationController.DeleteAccount();
+			if (success) {
+				JOptionPane.showMessageDialog(
+						null,
+						"Account successfully deleted.",
+						"Success",
+						JOptionPane.INFORMATION_MESSAGE
+				);
+				new LoginPage().setVisible(true);
+				this.dispose();
+			} else {
+				JOptionPane.showMessageDialog(
+						null,
+						"Failed to delete account. Please try again.",
+						"Error",
+						JOptionPane.ERROR_MESSAGE
+				);
+			}
+		}
+    }//GEN-LAST:event_delete_btnMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -264,7 +300,7 @@ public class ProfilePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton deleteAccoutBtn;
+    private javax.swing.JButton delete_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
